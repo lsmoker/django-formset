@@ -20,7 +20,7 @@ class OpportunityForm(ModelForm):
 class OpportunityCollection(FormCollection):
     min_siblings = 0
     extra_siblings = 1
-    team = OpportunityForm()
+    opportunity = OpportunityForm()
     legend = "Opportunities"
     add_label = "Add Opportunity"
     related_field = 'bundle'
