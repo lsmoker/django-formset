@@ -56,6 +56,7 @@ from testapp.forms.company import CompanyCollection, CompaniesCollection
 from testapp.forms.user import UserCollection, UserListCollection
 from testapp.forms.upload import UploadForm
 from testapp.forms.gallerycollection import GalleryCollection
+from testapp.forms.bundle import BundleCollection
 from testapp.models import BlogModel, Company, PersonModel, PollModel
 from testapp.models.gallery import Gallery
 
@@ -263,6 +264,16 @@ class UserCollectionView(DemoFormCollectionViewMixin, EditCollectionView):
 class CompanyCollectionView(DemoFormCollectionViewMixin, SessionFormCollectionViewMixin, EditCollectionView):
     model = Company
     collection_class = CompanyCollection
+    template_name = 'testapp/form-collection.html'
+    extra_context = {
+        'click_actions': 'disable -> submit -> reload !~ scrollToError',
+        'force_submission': False,
+    }
+
+
+class BundleCollectionView(EditCollectionView):
+    model = Bundle
+    collection_class = BundleCollection
     template_name = 'testapp/form-collection.html'
     extra_context = {
         'click_actions': 'disable -> submit -> reload !~ scrollToError',
@@ -593,4 +604,5 @@ urlpatterns = [
     ), name='button-actions'),
     path('gallerycollection', GalleryCollectionView.as_view(
     ), name='gallerycollection'),
+    path('bundle', BundleCollectionView.as_view(), name='bundle'),
 ]
