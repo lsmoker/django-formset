@@ -6,6 +6,7 @@ from .annotation import Annotation
 from .company import Company, Department, Team
 from .county import County, CountyUnnormalized, State
 from .blog import BlogModel
+from .bundle import Bundle, Opportunity
 from .poll import OpinionModel, PollModel, WeightedOpinion
 from .user import ExtendUser, User
 
