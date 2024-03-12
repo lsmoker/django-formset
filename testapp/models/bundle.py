@@ -14,6 +14,7 @@ class Bundle(models.Model):
 
 class Opportunity(models.Model):
 #    bundle = models.ForeignKey("Bundle", models.CASCADE, blank=True, null=True)
+# uncomment the above line and comment the below line to see the issue
     bundle = models.ForeignKey("Bundle", models.CASCADE, blank=True, null=True, related_name='opportunities')
     name = models.CharField(max_length=35, blank=True, null=True)
 
