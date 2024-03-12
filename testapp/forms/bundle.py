@@ -29,6 +29,7 @@ class OpportunityCollection(FormCollection):
         if data := data.get('opportunity'):
             try:
 #                return self.instance.opportunity_set.get(id=data.get('id') or 0)
+# uncomment the above line and comment the below line to see the issue
                 return self.instance.opportunities.get(id=data.get('id') or 0)
             except (AttributeError, Opportunity.DoesNotExist, ValueError):
                 return Opportunity(name=data.get('name'), bundle=self.instance)
