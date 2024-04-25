@@ -1468,7 +1468,7 @@ class DjangoFormCollectionSibling extends DjangoFormCollection {
 	}
 
 	protected resetToInitial() : boolean {
-		if (this.justAdded) {
+		if (this.justAdded && !this.element.hasAttribute('fresh-and-empty')) {
 			this.disconnect();
 			return true;
 		} else {
@@ -1702,9 +1702,11 @@ export class DjangoFormset {
 				if (!djangoForm.hiddenInputFields.includes(fieldElement)) {
 					djangoForm.hiddenInputFields.push(fieldElement);
 				}
-			} else if (fieldElement instanceof HTMLButtonElement && fieldElement.hasAttribute('df-click') && fieldElement.form === djangoForm.element) {
-				const button = new DjangoButton(djangoForm.formset, fieldElement, [...djangoForm.path, fieldElement.name]);
-				this.buttons.push(button);
+			} else if (fieldElement instanceof HTMLButtonElement) {
+				if (fieldElement.hasAttribute('df-click') && fieldElement.form === djangoForm.element) {
+					const button = new DjangoButton(djangoForm.formset, fieldElement, [...djangoForm.path, fieldElement.name]);
+					this.buttons.push(button);
+				}
 			} else {
 				const fieldGroupElement = fieldElement.closest('[role="group"]');
 				if (fieldGroupElement && !djangoForm.fieldGroups.find(fg => fg.element === fieldGroupElement)) {
